@@ -1,0 +1,12 @@
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="ID" [(ngModel)]="login.id" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Password" [(ngModel)]="login.password" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+  </form>
+  <div>
+    <button mat-raised-button class="btn btn-primary"(click)="log()">Login</button>
+</div>
