@@ -10,7 +10,7 @@ import {LoginService} from '../../services/login.service';
 export class LoginComponent implements OnInit {
   
   private login={
-    id:"",
+    userId:"",
     password:""
   }
   constructor(private loginService:LoginService) { }
@@ -18,6 +18,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 log(){
-  this.loginService.login(this.login);
+  this.loginService.login(this.login).subscribe(data=>console.log(data));
  }
 }
