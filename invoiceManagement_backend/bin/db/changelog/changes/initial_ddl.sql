@@ -32,5 +32,17 @@ CREATE TABLE IF NOT EXISTS Worker
     ason date,
     foreign key(fg) references fglevel(fg)
 );
-
+CREATE TABLE IF NOT EXISTS Timesheet
+(
+    timesheetid text primary key,
+    workername text,
+    timestampend date,
+    location text,
+    status text,
+    sthours numeric,
+    othours numeric,
+    strate numeric,
+    otrate numeric,
+    invoiced boolean
+);
 
