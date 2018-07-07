@@ -31,6 +31,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile group: 'com.h2database', name: 'h2', version: '1.4.196'
 	runtime('com.h2database:h2')
+	compile group: 'org.projectlombok', name: 'lombok', version: '1.16.16'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.security:spring-security-test')
 }
