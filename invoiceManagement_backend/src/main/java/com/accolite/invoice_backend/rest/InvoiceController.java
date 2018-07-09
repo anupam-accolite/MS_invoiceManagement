@@ -1,14 +1,14 @@
 package com.accolite.invoice_backend.rest;
-import java.util.List;
+import java.util.HashMap;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import com.accolite.invoice_backend.dto.InvoiceDto;
 import com.accolite.invoice_backend.dto.MonthDtoInvoice;
 import com.accolite.invoice_backend.service.TimesheetService;
 
@@ -21,8 +21,8 @@ public class InvoiceController {
      TimesheetService timesheetService;
 	
 	@RequestMapping(value="/",method=RequestMethod.POST)
-	public ResponseEntity<List<InvoiceDto>> getInvoice(@RequestBody final MonthDtoInvoice curMonth)
+	public ResponseEntity<HashMap<String, Double>> getInvoice(@RequestBody final MonthDtoInvoice month)
 	{
-		return ResponseEntity.ok().body(timesheetService.getInvoice(curMonth.month));
+		return ResponseEntity.ok().body(timesheetService.getInvoice(month.month));
 	}
 }
