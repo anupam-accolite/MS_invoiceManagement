@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class fglevel {
+public class Fglevel {
 
 	@Id
 	@Column(name="fg")

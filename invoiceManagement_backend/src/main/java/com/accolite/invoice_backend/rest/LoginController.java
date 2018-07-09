@@ -12,7 +12,7 @@ import com.accolite.invoice_backend.service.LoginService;
 
 @RestController
 @RequestMapping(value = "login")
-public class loginController {
+public class LoginController {
 
 
      @Autowired

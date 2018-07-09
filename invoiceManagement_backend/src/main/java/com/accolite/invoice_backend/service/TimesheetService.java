@@ -1,6 +1,8 @@
 package com.accolite.invoice_backend.service;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,12 +15,15 @@ import com.accolite.invoice_backend.repository.TimesheetRepository;
 @Service
 public class TimesheetService {
 	
-	TimesheetDto timesheetDto=new TimesheetDto();
+	TimesheetDto timesheetDtoB=new TimesheetDto();
+	TimesheetDto timesheetDtoM=new TimesheetDto();
+	
 	@Autowired
 	TimesheetRepository timesheetRepository;
 	@Autowired
 	CalendarRepository calendarRepository ;
-	public TimesheetDto getInvoice(String inMonth) {
+	public List<TimesheetDto> getInvoice(String inMonth) {
+		List<TimesheetDto> l=new ArrayList<TimesheetDto>();
 		
 		Iterable<Timesheet> r=	timesheetRepository.findAll();
 		Iterator<Timesheet> rs= r.iterator();
@@ -64,8 +69,13 @@ public class TimesheetService {
 			}				
 		}
 				
-		timesheetDto.setTotalInvoiceB(totalInvoiceB);
-		timesheetDto.setTotalInvoiceM(totalInvoiceM);
-		return timesheetDto;		
+		timesheetDtoB.setTotalInvoice(totalInvoiceB);
+		timesheetDtoB.setLocation("bangalore");
+		timesheetDtoM.setTotalInvoice(totalInvoiceM);
+		timesheetDtoM.setLocation("mumbai");
+		
+		l.add(timesheetDtoB);
+		l.add(timesheetDtoM);
+		return l;		
 	}
 }

@@ -1,19 +1,21 @@
 package com.accolite.invoice_backend.dto;
 
 public class TimesheetDto {
-	private double totalInvoiceB;
-	private double totalInvoiceM;
-	public double getTotalInvoiceB() {
-		return totalInvoiceB;
+	private double totalInvoice;
+	private String location;
+	public double getTotalInvoice() {
+		return totalInvoice;
 	}
-	public void setTotalInvoiceB(double totalInvoiceB) {
-		this.totalInvoiceB = totalInvoiceB;
+	public void setTotalInvoice(double totalInvoice) {
+		this.totalInvoice = totalInvoice;
 	}
-	public double getTotalInvoiceM() {
-		return totalInvoiceM;
+	public String getLocation() {
+		return location;
 	}
-	public void setTotalInvoiceM(double totalInvoiceM) {
-		this.totalInvoiceM = totalInvoiceM;
+	public void setLocation(String location) {
+		this.location = location;
 	}
+	
+	
 
 }

@@ -1,5 +1,6 @@
 package com.accolite.invoice_backend.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.sql.ResultSet;
 import java.util.Iterator;
@@ -19,13 +20,16 @@ import com.accolite.invoice_backend.dto.ProjectionDto;;
 @Service
 public class WorkerService {
     
-	ProjectionDto projectionDto= new ProjectionDto();
+	ProjectionDto projectionDtoB= new ProjectionDto();
+	ProjectionDto projectionDtoM= new ProjectionDto();
+	
 	@Autowired
 	WorkerRepository workerRepository;
 	@Autowired
 	CalendarRepository calendarRepository ;
-	public ProjectionDto getProjection(int curMonth)
+	public List<ProjectionDto> getProjection(int curMonth)
 	{
+	 List<ProjectionDto> l=new ArrayList<ProjectionDto>();
 	 Iterable<Worker> r=	workerRepository.findAll();
 	 Iterator<Worker> rs= r.iterator();
 	
@@ -61,9 +65,14 @@ public class WorkerService {
 		
 	
 	}
-	projectionDto.setTotalProjectionB(totalProjectionB);
-	projectionDto.setTotalProjectionM(totalProjectionM); 
-	
-	return projectionDto;
+	projectionDtoB.setTotalProjection(totalProjectionB);
+	projectionDtoB.setLocation("bangalore");
+
+	projectionDtoM.setTotalProjection(totalProjectionM); 
+	projectionDtoM.setLocation("mumbai");
+
+	l.add(projectionDtoB);
+	l.add(projectionDtoM);
+	return l;
 	}
 }

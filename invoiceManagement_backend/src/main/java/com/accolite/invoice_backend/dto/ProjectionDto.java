@@ -2,19 +2,21 @@ package com.accolite.invoice_backend.dto;
 
 public class ProjectionDto {
 
-	private double totalProjectionB;
-	private double totalProjectionM;
-	public double getTotalProjectionB() {
-		return totalProjectionB;
+	private double totalProjection;
+	private String location;
+	public double getTotalProjection() {
+		return totalProjection;
 	}
-	public void setTotalProjectionB(double totalProjectionB) {
-		this.totalProjectionB = totalProjectionB;
+	public void setTotalProjection(double totalProjection) {
+		this.totalProjection = totalProjection;
 	}
-	public double getTotalProjectionM() {
-		return totalProjectionM;
+	public String getLocation() {
+		return location;
 	}
-	public void setTotalProjectionM(double totalProjectionM) {
-		this.totalProjectionM = totalProjectionM;
+	public void setLocation(String location) {
+		this.location = location;
 	}
+	
+	
 	
 }
