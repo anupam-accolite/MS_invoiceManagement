@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.accolite.invoice_backend.dto.TimesheetDto;
+import com.accolite.invoice_backend.dto.InvoiceDto;
 import com.accolite.invoice_backend.entity.Timesheet;
 
 import com.accolite.invoice_backend.repository.CalendarRepository;
@@ -15,15 +15,15 @@ import com.accolite.invoice_backend.repository.TimesheetRepository;
 @Service
 public class TimesheetService {
 	
-	TimesheetDto timesheetDtoB=new TimesheetDto();
-	TimesheetDto timesheetDtoM=new TimesheetDto();
+	InvoiceDto timesheetDtoB=new InvoiceDto();
+	InvoiceDto timesheetDtoM=new InvoiceDto();
 	
 	@Autowired
 	TimesheetRepository timesheetRepository;
 	@Autowired
 	CalendarRepository calendarRepository ;
-	public List<TimesheetDto> getInvoice(String inMonth) {
-		List<TimesheetDto> l=new ArrayList<TimesheetDto>();
+	public List<InvoiceDto> getInvoice(String inMonth) {
+		List<InvoiceDto> l=new ArrayList<InvoiceDto>();
 		
 		Iterable<Timesheet> r=	timesheetRepository.findAll();
 		Iterator<Timesheet> rs= r.iterator();
