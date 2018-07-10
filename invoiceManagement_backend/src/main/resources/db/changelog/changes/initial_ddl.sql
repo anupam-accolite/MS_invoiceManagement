@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS Calendar
 
 CREATE TABLE IF NOT EXISTS Worker
 (
-    eid integer NOT NULL primary key,
+    eid text NOT NULL primary key,
     sdate date,
     edate date,
     status text,
@@ -45,3 +45,16 @@ CREATE TABLE IF NOT EXISTS Timesheet
     invoiced boolean
 );
 
+create table if not exists tfr (
+   	projectId INTEGER not null ,
+  	workerId character varying not null PRIMARY KEY,
+  	status INTEGER not null
+);
+
+
+create table IF NOT EXISTS invoice_mapping(
+ invoice_id SERIAL primary key,
+ timesheet_id character varying(40),
+ paid boolean default false,
+ foreign key(timesheet_id) references timesheet(timesheetid)
+);

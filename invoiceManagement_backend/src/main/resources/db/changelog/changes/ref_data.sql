@@ -4,7 +4,7 @@ insert into fglevel values(1,0,24);
 insert into fglevel values(2,25,48);
 insert into fglevel values(3,49,72);
 insert into fglevel values(4,73,96);
-insert into fglevel values(4,73,1500);
+insert into fglevel values(5,73,1500);
 
 insert into Calendar values(1, '2018-01-01', '2018-01-28', 8);
 insert into Calendar values(2, '2018-01-29', '2018-02-25', 8);

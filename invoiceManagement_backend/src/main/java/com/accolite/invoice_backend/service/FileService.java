@@ -67,14 +67,14 @@ public class FileService {
 				if(cell!=null) {
 
 					String timesheetId = row.getCell(0).getStringCellValue();
-					timesheet.setTimesheetId(timesheetId.toString());
+					timesheet.setTimesheetid(timesheetId.toString());
 
 					String workerName = row.getCell(2).getStringCellValue();
-					timesheet.setWorkerName(workerName);
+					timesheet.setWorkername(workerName);
 
 					Date date = row.getCell(3).getDateCellValue();
 					System.out.println(date);
-					timesheet.setTimesheetEndDate(date);
+					timesheet.setTimestampend(date);
 
 					String location = row.getCell(6).getStringCellValue();
 					location = location.substring(location.length() - 3);
@@ -89,7 +89,7 @@ public class FileService {
 					}catch (NullPointerException n){
 						billable_hours_st = 0.0;
 					}
-					timesheet.setStHours(billable_hours_st);
+					timesheet.setSthours(billable_hours_st);
 
 					Double billable_hours_ot;
 					try {
@@ -97,16 +97,16 @@ public class FileService {
 					} catch (NullPointerException n) {
 						billable_hours_ot = 0.0;
 					}
-					timesheet.setOtHours(billable_hours_ot);
+					timesheet.setOthours(billable_hours_ot);
 
 					Double st_rate = row.getCell(11).getNumericCellValue();
-					timesheet.setStRate(st_rate);
+					timesheet.setStrate(st_rate);
 
 					Double ot_rate = row.getCell(12).getNumericCellValue();
-					timesheet.setOtRate(ot_rate);
+					timesheet.setOtrate(ot_rate);
 
-					boolean existInInvoiceMap = invoiceMappingRepository.exists(timesheet.getTimesheetId());
-					boolean existInTimesheet = timesheetRepository.exists(timesheet.getTimesheetId());
+					boolean existInInvoiceMap = invoiceMappingRepository.exists(timesheet.getTimesheetid());
+					boolean existInTimesheet = timesheetRepository.exists(timesheet.getTimesheetid());
 
 					if(timesheet.getStatus().equals("Invoiced")) {
 						if(!existInInvoiceMap) {
@@ -115,11 +115,11 @@ public class FileService {
 					}
 					else if(timesheet.getStatus().equals("Paid")) {
 						System.out.println(timesheet.getStatus());
-						if(existInInvoiceMap && !(invoiceMappingRepository.findOne(timesheet.getTimesheetId()).getPaid())) {
+						if(existInInvoiceMap && !(invoiceMappingRepository.findOne(timesheet.getTimesheetid()).getPaid())) {
 							timesheetRepository.save(timesheet); //update
 						}
 						else if(existInTimesheet) {
-							timesheetRepository.delete(timesheet.getTimesheetId());
+							timesheetRepository.delete(timesheet.getTimesheetid());
 						}
 					}
 					else {
@@ -187,18 +187,19 @@ public class FileService {
 		Iterator<Row> rowIterator = mySheet.iterator(); // Traversing over each row of XLSX file 
 
 		while (rowIterator.hasNext()) {
+			System.out.println("in whileeeeeeeeee");
 			Row row = rowIterator.next(); // For each row, iterate through each columns 
+			count++;
 			if(count>=3) {
 				Worker worker = new Worker();
 
 				Cell cell = row.getCell(1);
-
 				count++;
 				if(cell != null) {
 					String workerId = row.getCell(1).getStringCellValue();
-					//					System.out.println("workerID"+workerId);
+										System.out.println("workerID"+workerId);
 
-					worker.setWorkerId(workerId);
+					worker.setEid(workerId);
 
 					String status = row.getCell(3).getStringCellValue();
 					worker.setStatus(status);
@@ -210,16 +211,16 @@ public class FileService {
 
 					Date startDate = row.getCell(8).getDateCellValue();
 					//				System.out.println(startDate);
-					worker.setStartDate(startDate);
+					worker.setSdate(startDate);
 
 					Date endDate = row.getCell(10).getDateCellValue();
 					//				System.out.println(endDate);
-					worker.setEndDate(endDate);
+					worker.setEdate(endDate);
 
 					String[] levels = row.getCell(13).getStringCellValue().split(" ");
 					Integer level = Integer.parseInt(levels[1]);
 					//				System.out.println("Level "+level);
-					worker.setFgLevel(level);
+					worker.setFg(level);
 					workerRepository.save(worker);
 				}
 			}

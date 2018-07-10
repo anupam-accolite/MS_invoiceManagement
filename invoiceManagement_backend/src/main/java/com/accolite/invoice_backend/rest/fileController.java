@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.accolite.invoice_backend.config.ApplicationProperties;
+//import com.accolite.invoice_backend.config.ApplicationProperties;
 import com.accolite.invoice_backend.service.FileService;
 
 @RestController
 @RequestMapping(value = "fileUpload")
 public class fileController {
 
-	@Autowired
-	private ApplicationProperties applicationProperties;
+//	@Autowired
+//	private ApplicationProperties applicationProperties;
 	
 	@Autowired
     FileService fileService;
@@ -46,6 +46,7 @@ public class fileController {
 		    	   fileService.saveTFR("C:\\Users\\Tejaswini.Shitole\\Downloads\\Test\\"+file.getOriginalFilename());
 		       }
 		       else {
+		    	   System.out.println("save t and m");
 		    	   fileService.saveTAndM("C:\\Users\\Tejaswini.Shitole\\Downloads\\Test\\"+file.getOriginalFilename());
 		       }
 		     }

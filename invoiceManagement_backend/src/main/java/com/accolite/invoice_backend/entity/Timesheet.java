@@ -8,6 +8,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Timesheet {
+	@Id
 	@Column(name="timesheetid")
 	private String timesheetid ;
 	private String workername;
@@ -18,7 +19,7 @@ public class Timesheet {
 	private double othours;
 	private double strate;
 	private double otrate;
-	private boolean invoiced;
+	private boolean invoiced = false;
 	public String getTimesheetid() {
 		return timesheetid;
 	}
