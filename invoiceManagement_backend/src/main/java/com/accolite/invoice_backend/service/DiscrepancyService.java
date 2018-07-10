@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.accolite.invoice_backend.dto.DiscrepancyDto;
+import com.accolite.invoice_backend.entity.DiscrepancyType;
 import com.accolite.invoice_backend.entity.Fglevel;
 import com.accolite.invoice_backend.entity.Worker;
 import com.accolite.invoice_backend.repository.FglevelRepository;
@@ -26,6 +27,9 @@ public class DiscrepancyService {
 	WorkerRepository workerRepository;
 	@Autowired
 	FglevelRepository fglevelRepository ;
+	
+	DiscrepancyType discrepancyType ;
+	
 	
 	public List<DiscrepancyDto> getDiscrepancy() {
 		 Iterable<Worker> r=	workerRepository.findAll();
@@ -49,14 +53,14 @@ public class DiscrepancyService {
 				Fglevel fglevel = rs1.next() ;
 				if(fglevel.getUpper() >= currentExp && fglevel.getLower()	<= currentExp) {
 					if(fglevel.getFg() > currentFg) {
-						discrepancyDto.setDiscrepancyType(2);
+						discrepancyDto.setDiscrepancyType(discrepancyType.DISCREPANCY_CAUGHT);
 						discrepancyDto.setEid(worker.getEid());
 						l.add(discrepancyDto) ;
 						break;
 						}
 					else if(fglevel.getFg() == currentFg){
 						if(fglevel.getUpper()-currentExp <= 2) {
-							discrepancyDto.setDiscrepancyType(1);
+							discrepancyDto.setDiscrepancyType(discrepancyType.DISCREPANCY_ABOUT_TO_OCCUR_IN_2_MONTHS);
 							discrepancyDto.setEid(worker.getEid());
 							l.add(discrepancyDto) ;
 							break ;
@@ -64,7 +68,7 @@ public class DiscrepancyService {
 							
 					}
 					else {
-						discrepancyDto.setDiscrepancyType(0);
+						discrepancyDto.setDiscrepancyType(discrepancyType.FG_LEVEL_EXCEEDED);
 						discrepancyDto.setEid(worker.getEid());
 						l.add(discrepancyDto) ;
 						break ;

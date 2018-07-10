@@ -1,14 +1,16 @@
 package com.accolite.invoice_backend.dto;
 
+import com.accolite.invoice_backend.entity.DiscrepancyType;
+
 public class DiscrepancyDto {
 	
-	private long discrepancyType ;
+	private DiscrepancyType discrepancyType ;
 	private String eid ;
 	
-	public long getDiscrepancyType() {
+	public DiscrepancyType getDiscrepancyType() {
 		return discrepancyType;
 	}
-	public void setDiscrepancyType(long discrepancyType) {
+	public void setDiscrepancyType(DiscrepancyType discrepancyType) {
 		this.discrepancyType = discrepancyType;
 	}
 	public String getEid() {
