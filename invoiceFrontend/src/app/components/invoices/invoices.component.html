@@ -1,3 +1,105 @@
-<p>
-  invoices works!
-</p>
+
+<head>
+  <title>Projection</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    
+    .navbar {
+      margin-bottom : 0;
+      border-radius: 0;
+    }
+    
+    
+     .jumbotron {
+      margin-bottom: 100px;
+    }
+   
+    
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+    .panel-body{
+     float : right;
+        font-size : 50px;
+    }
+  </style>
+</head>
+<body>
+
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+     <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Back</a></li>
+      </ul>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>Projection</h1>      
+  </div>
+</div>
+
+<div class="container">    
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="panel panel-primary">
+        <div class="panel-heading">Projection for Banagalore</div>
+        <div class="panel-body"><span id="blrProjection">X</span></div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-5"> 
+      <div class="panel panel-success">
+        <div class="panel-heading">Projection for Mumbai</div>
+        <div class="panel-body"><span id="mumProjection">Y</span></div>
+      </div>
+    </div>
+  </div>
+</div><br>
+
+<br><br>
+
+<footer class="container-fluid text-center">
+  <p>Projection Estimate for a Month</p>  
+  <form class="form-inline">Select Month:
+    <span class="dropup" id="head1">
+        <select id='gMonth1'>
+    <option value=''>--Select Month--</option>
+    <option selected value='1'>Janaury</option>
+    <option value='2'>February</option>
+    <option value='3'>March</option>
+    <option value='4'>April</option>
+    <option value='5'>May</option>
+    <option value='6'>June</option>
+    <option value='7'>July</option>
+    <option value='8'>August</option>
+    <option value='9'>September</option>
+    <option value='10'>October</option>
+    <option value='11'>November</option>
+    <option value='12'>December</option>
+    </select> 
+    </span> 
+    <button type="button" class="btn btn-danger">Get Projection</button>
+  </form>
+</footer>
+
+</body>

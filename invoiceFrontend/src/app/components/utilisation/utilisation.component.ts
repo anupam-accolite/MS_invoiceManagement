@@ -12,4 +12,7 @@ export class UtilisationComponent implements OnInit {
   ngOnInit() {
   }
 
+  Utilization(){
+    
+  } 
 }

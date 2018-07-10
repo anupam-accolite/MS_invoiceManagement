@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {MatInputModule} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { Router, ActivatedRoute } from '@angular/router';
 import {LoginService} from '../../services/login.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,11 +15,16 @@ export class LoginComponent implements OnInit {
     userId:"",
     password:""
   }
-  constructor(private loginService:LoginService) { }
+  constructor(private loginService:LoginService,private router:Router) { }
 
   ngOnInit() {
   }
-log(){
-  this.loginService.login(this.login).subscribe(data=>console.log(data));
+logIn(){
+  console.log(this.login);
+  this.loginService.login(this.login).subscribe(data=>{
+    if(data)
+    this.router.navigate(['dashboard']);
+  
+  });
  }
 }
