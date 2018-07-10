@@ -14,6 +14,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.accolite.invoice_backend.entity.InvoiceMapping;
 import com.accolite.invoice_backend.entity.TFR;
 import com.accolite.invoice_backend.entity.Timesheet;
 import com.accolite.invoice_backend.entity.Worker;
@@ -38,7 +39,7 @@ public class FileService {
 	WorkerRepository workerRepository;
 
 	public void saveTimesheet(String timesheetFile) {
-		int count = 0;
+		int count = 1;
 
 		File myFile = new File(timesheetFile);
 		FileInputStream fis = null;
@@ -115,8 +116,10 @@ public class FileService {
 					}
 					else if(timesheet.getStatus().equals("Paid")) {
 						System.out.println(timesheet.getStatus());
-						if(existInInvoiceMap && !(invoiceMappingRepository.findOne(timesheet.getTimesheetid()).getPaid())) {
-							timesheetRepository.save(timesheet); //update
+						InvoiceMapping invoiceMapping = invoiceMappingRepository.findOne(timesheet.getTimesheetid());
+						if(existInInvoiceMap && invoiceMapping !=null && !invoiceMapping.getPaid()) {
+							invoiceMapping.setPaid(true);
+							invoiceMappingRepository.save(invoiceMapping);
 						}
 						else if(existInTimesheet) {
 							timesheetRepository.delete(timesheet.getTimesheetid());
@@ -132,7 +135,7 @@ public class FileService {
 
 	public void saveTFR(String tfrFile) {
 		System.out.println("in save tfr" + tfrFile);
-		int count = 0;
+		int count = 1;
 		File myFile = new File(tfrFile);
 		FileInputStream fis = null;
 		try {
