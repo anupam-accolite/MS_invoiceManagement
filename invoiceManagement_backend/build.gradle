@@ -6,8 +6,10 @@ buildscript {
 		mavenCentral()
 	}
 	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")		
 	}
+	
+	
 }
 
 apply plugin: 'java'
@@ -34,4 +36,5 @@ dependencies {
 	compile group: 'org.projectlombok', name: 'lombok', version: '1.16.16'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.security:spring-security-test')
+	compile fileTree(dir: 'lib', include: ['*.jar'])
 }

@@ -15,9 +15,9 @@ public class Worker {
 	private Date sdate;
 	private Date edate;
 	private String status;
-	private double rate;
+	private double rate = 1.0;
 	private String location;
-	private long experience;
+	private long experience = 0;
 	private long fg;
 	private Date ason;
 	
@@ -76,7 +76,4 @@ public class Worker {
 	public void setAson(Date ason) {
 		this.ason = ason;
 	}
-	
-	
-	
 }
