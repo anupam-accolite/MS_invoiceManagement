@@ -1,5 +1,6 @@
 package com.accolite.invoice_backend.rest;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class UtilizationController {
      UtilizationService  utilizationService;
 	
 	@RequestMapping(value="/",method=RequestMethod.POST)
-	public ResponseEntity< List<UtilizationDto>> getProjection(@RequestBody final UtilizationDto utilizationdto)
+	public ResponseEntity< HashMap<String,List<Double>>> getProjection(@RequestBody final UtilizationDto utilizationdto)
 	{  System.out.println(utilizationdto.toString());
 		return ResponseEntity.ok().body(utilizationService.getUtilization(utilizationdto.getMonth(),utilizationdto.getYear()));
 	}

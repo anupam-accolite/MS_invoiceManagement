@@ -3,15 +3,8 @@ package com.accolite.invoice_backend.dto;
 public class UtilizationDto {
 	private long month;
 	private long year;
-	private String location;
 	private double Utilization;
 	
-	public String getLocation() {
-		return location;
-	}
-	public void setLocation(String location) {
-		this.location = location;
-	}
 	public double getUtilization() {
 		return Utilization;
 	}
@@ -30,6 +23,7 @@ public class UtilizationDto {
 	public void setYear(long year) {
 		this.year = year;
 	}
+
 	
 	
 	

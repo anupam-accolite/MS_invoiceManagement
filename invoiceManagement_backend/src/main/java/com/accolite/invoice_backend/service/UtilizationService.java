@@ -2,6 +2,7 @@ package com.accolite.invoice_backend.service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,79 +16,47 @@ import com.accolite.invoice_backend.repository.TimesheetRepository;
 
 @Service
 public class UtilizationService {
-	
-	//List<UtilizationDto> totalUtilization = new ArrayList();
-	//List<UtilizationDto> utilizationDtoM = new ArrayList();
-	
-	UtilizationDto utilizationDtoB= new UtilizationDto();
-	UtilizationDto utilizationDtoM= new UtilizationDto();
+
+	UtilizationDto utilizationDto = new UtilizationDto();
 
 	@Autowired
 	TimesheetRepository timesheetRepository;
 	@Autowired
-	CalendarRepository calendarRepository ;
-	
-	@SuppressWarnings("deprecation")
-	public List<UtilizationDto> getUtilization(long m, long n){
-		 List<UtilizationDto> l=new ArrayList<UtilizationDto>();
-		 Iterable<Timesheet> r=	timesheetRepository.findAll();
-		 Iterator<Timesheet> rs= r.iterator();
-		 double totalUtilizationB = 0.0 ;
-		 double totalUtilizationM = 0.0 ;
-	     double availableHoursB = 0.0 ;
-		 double availableHoursM = 0.0 ;
-		 double actualHoursB = 0.0 ;
-		 double actualHoursM = 0.0 ;
-		 
-		 //List<Calendar> r2 = calendarRepository.getMonth(inMonth) ;
-		 
-		 while (rs.hasNext()) {
-			 
-			 Timesheet ts = rs.next();
-			 String location = ts.getLocation();
-			 Date tEnd = ts.getTimestampend() ;
-			 
-				 if(m==(tEnd.getMonth()+1) && n==(tEnd.getYear()+1900)) {
-					 //System.out.println("here");
-					 if(location.equalsIgnoreCase("blr")) {
-						 //System.out.println(tEnd.getMonth());
-						 actualHoursB += ts.getSthours() + ts.getOthours() ;
-							availableHoursB += 40 ;
-					 }
-					 else {
-						 //System.out.println(tEnd.getMonth());
-							actualHoursM += ts.getSthours() + ts.getOthours() ;
-							availableHoursM += 40 ;
-						}
-			 
-					
-			 }
-				 //System.out.println(actualHoursB);
-				 //System.out.println(actualHoursM);
-				 //System.out.println(availableHoursB);
-				 //System.out.println(availableHoursM);
-				 
-				 
-		 }
-		 totalUtilizationB = availableHoursB/actualHoursB ;
-		 totalUtilizationM = availableHoursM/actualHoursM ;
-		 
-		 //System.out.println(totalUtilizationB);
-		 //System.out.println(totalUtilizationM);
-	 
-		 
-		 utilizationDtoB.setUtilization(totalUtilizationB);
-		 utilizationDtoB.setLocation("bangalore");
-		 
+	CalendarRepository calendarRepository;
 
-		 utilizationDtoM.setUtilization(totalUtilizationM); 
-		 utilizationDtoM.setLocation("mumbai");
-		 
-		 
-		 
-		 l.add(utilizationDtoB);
-		 l.add(utilizationDtoM);
-		 return l;
-		 
-		 }
+	@SuppressWarnings("deprecation")
+	public HashMap<String, List<Double>> getUtilization(long m, long n) {
+		HashMap<String, List<Double>> map = new HashMap<String, List<Double>>();
+		List<Double> l;
+		Iterable<Timesheet> r = timesheetRepository.findAll();
+		Iterator<Timesheet> rs = r.iterator();
+
+		while (rs.hasNext()) {
+
+			Timesheet ts = rs.next();
+			String location = ts.getLocation();
+			Date tEnd = ts.getTimestampend();
+
+			if (m == (tEnd.getMonth() + 1) && n == (tEnd.getYear() + 1900)) {
+
+				if (!map.containsKey(location)) {
+					l = new ArrayList<Double>();
+					l.add(0.0);
+					l.add(0.0);
+					l.add(0.0);
+					map.put(location, l);
+				}
+				l = map.get(location);
+				l.set(0, l.get(0) + ts.getSthours() + ts.getOthours());
+				l.set(1, l.get(1) + 40);
+				l.set(2, l.get(0) / l.get(1));
+				map.put(location, l);
+
+			}
+
+		}
+
+		return map;
+
+	}
 }

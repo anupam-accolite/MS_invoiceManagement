@@ -17,8 +17,6 @@ import com.accolite.invoice_backend.repository.TimesheetRepository;
 @Service
 public class TimesheetService {
 
-	DraftDto draftDto;
-
 	@Autowired
 	TimesheetRepository timesheetRepository;
 	@Autowired
@@ -31,8 +29,7 @@ public class TimesheetService {
 		Iterator<Timesheet> rs = r.iterator();
 
 		// logic
-		double totalInvoiceB = 0.0;
-		double totalInvoiceM = 0.0;
+
 		Date curDate = new Date();
 		int curMonth = curDate.getMonth();
 		int curYear = curDate.getYear();
@@ -46,14 +43,6 @@ public class TimesheetService {
 				// System.out.println(rs.getString("location"));
 				if (inMonth) {
 					if (curYear == tEnd.getYear() && curMonth == tEnd.getMonth()) {
-						// if(timesheet.getLocation().equalsIgnoreCase("blr")) {
-						// totalInvoiceB += timesheet.getSthours()*timesheet.getStrate() +
-						// timesheet.getOthours()*timesheet.getOtrate() ;
-						// }
-						// else {
-						// totalInvoiceM += timesheet.getSthours()*timesheet.getStrate() +
-						// timesheet.getOthours()*timesheet.getOtrate() ;
-						// }
 						if (map.get(timesheet.getLocation()) == null)
 							map.put(timesheet.getLocation(), 0.0);
 						map.put(timesheet.getLocation(),
@@ -64,16 +53,6 @@ public class TimesheetService {
 				} else {
 					if (curYear > tEnd.getYear() || (curYear == tEnd.getYear() && curMonth > tEnd.getMonth())) {
 
-						// if(timesheet.getLocation().equalsIgnoreCase("blr")) {
-						// totalInvoiceB += timesheet.getSthours()*timesheet.getStrate() +
-						// timesheet.getOthours()*timesheet.getOtrate() ;
-						// }
-						// else if(timesheet.getLocation().equalsIgnoreCase("mum")){
-						// //System.out.println("mum");
-						// totalInvoiceM += timesheet.getSthours()*timesheet.getStrate() +
-						// timesheet.getOthours()*timesheet.getOtrate() ;
-						//
-						// }
 						if (map.get(timesheet.getLocation()) == null)
 							map.put(timesheet.getLocation(), 0.0);
 						map.put(timesheet.getLocation(),
@@ -84,36 +63,30 @@ public class TimesheetService {
 			}
 		}
 
-		// timesheetDtoB.setTotalInvoice(totalInvoiceB);
-		// timesheetDtoB.setLocation("bangalore");
-		// timesheetDtoM.setTotalInvoice(totalInvoiceM);
-		// timesheetDtoM.setLocation("mumbai");
-		//
-		// l.add(timesheetDtoB);
-		// l.add(timesheetDtoM);
 		return map;
 	}
 
 	public HashMap<String, List<DraftDto>> getDraft() {
 
 		HashMap<String, List<DraftDto>> h = new HashMap<String, List<DraftDto>>();
-		List<DraftDto> l2;
+
 		Iterable<Timesheet> r2 = timesheetRepository.findAll();
 		Iterator<Timesheet> rs2 = r2.iterator();
 
 		while (rs2.hasNext()) {
-			
-			l2 = new ArrayList<DraftDto>();
+
 			Timesheet timesheet = rs2.next();
 			String status = timesheet.getStatus();
-			draftDto = new DraftDto();
-			if (status.equalsIgnoreCase("draft")) {
-				if (!h.containsKey(timesheet.getLocation()))
-					h.put(timesheet.getLocation(), l2);
 
+			if (status.equalsIgnoreCase("draft")) {
+				if (!h.containsKey(timesheet.getLocation())) {
+
+					h.put(timesheet.getLocation(), new ArrayList());
+				}
+				DraftDto draftDto = new DraftDto();
 				draftDto.setTimesheetid(timesheet.getTimesheetid());
 				draftDto.setWorkername(timesheet.getWorkername());
-				l2 = h.get(timesheet.getLocation());
+				List l2 = h.get(timesheet.getLocation());
 				l2.add(draftDto);
 				h.put(timesheet.getLocation(), l2);
 
