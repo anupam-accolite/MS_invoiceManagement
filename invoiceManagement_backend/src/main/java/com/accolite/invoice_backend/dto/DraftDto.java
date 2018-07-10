@@ -1,7 +1,7 @@
 package com.accolite.invoice_backend.dto;
 
 public class DraftDto {
-	private String location;
+	
 	private String workername;
 	private String timesheetid;
 	
@@ -18,13 +18,6 @@ public class DraftDto {
 	public void setWorkername(String workername) {
 		this.workername = workername;
 	}
-	public String getLocation() {
-		return location;
-	}
-	public void setLocation(String location) {
-		this.location = location;
-	}
-	
-	
 
+	
 }

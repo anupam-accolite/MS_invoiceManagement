@@ -1,6 +1,7 @@
 package com.accolite.invoice_backend.service;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -83,28 +84,35 @@ public class TimesheetService {
 	}
 	
 	
-	public List<DraftDto> getDraft() {
+	public HashMap<String,List<DraftDto>> getDraft() {
 		
-		List<DraftDto> l2 = new ArrayList<DraftDto>();
+		HashMap<String,List<DraftDto>> h = new HashMap<String,List<DraftDto>>();
+		List<DraftDto> l2;
 		Iterable<Timesheet> r2=	timesheetRepository.findAll();
 		Iterator<Timesheet> rs2= r2.iterator();
-		Date curDate = new Date();
+		
 		
 		while(rs2.hasNext()) {
+			l2 = new ArrayList<DraftDto>();
 			Timesheet timesheet= rs2.next();
 			String status=timesheet.getStatus();
-			Date tEnd = timesheet.getTimestampend();
 			if(status.equalsIgnoreCase("draft"))
 			{
-				draftDto.setLocation(timesheet.getLocation());
+				if(!h.containsKey(timesheet.getLocation()))
+					h.put(timesheet.getLocation(), l2);
+		
 				draftDto.setTimesheetid(timesheet.getTimesheetid());
 				draftDto.setWorkername(timesheet.getWorkername());
-				
+				l2 = h.get(timesheet.getLocation());
 				l2.add(draftDto);
+				h.put(timesheet.getLocation(),l2);
+				
+				
+				
 				
 			}
 			
 		}
-		return l2;
+		return h;
 	}
 }

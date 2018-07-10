@@ -1,5 +1,6 @@
 package com.accolite.invoice_backend.rest;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class DraftController {
      TimesheetService timesheetService;
 	
 	@RequestMapping(value="/",method=RequestMethod.GET)
-	public ResponseEntity<List<DraftDto>> getDraft()
+	public ResponseEntity<HashMap<String,List<DraftDto>>> getDraft()
 	{
 		return ResponseEntity.ok().body(timesheetService.getDraft());
 	}
