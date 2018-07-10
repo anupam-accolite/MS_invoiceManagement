@@ -17,7 +17,7 @@ import com.accolite.invoice_backend.repository.TimesheetRepository;
 @Service
 public class TimesheetService {
 
-	DraftDto draftDto = new DraftDto();
+	DraftDto draftDto;
 
 	@Autowired
 	TimesheetRepository timesheetRepository;
@@ -102,9 +102,11 @@ public class TimesheetService {
 		Iterator<Timesheet> rs2 = r2.iterator();
 
 		while (rs2.hasNext()) {
+			
 			l2 = new ArrayList<DraftDto>();
 			Timesheet timesheet = rs2.next();
 			String status = timesheet.getStatus();
+			draftDto = new DraftDto();
 			if (status.equalsIgnoreCase("draft")) {
 				if (!h.containsKey(timesheet.getLocation()))
 					h.put(timesheet.getLocation(), l2);
