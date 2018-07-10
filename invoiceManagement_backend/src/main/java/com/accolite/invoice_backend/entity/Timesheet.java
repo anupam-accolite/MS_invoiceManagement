@@ -8,112 +8,76 @@ import javax.persistence.Id;
 
 @Entity
 public class Timesheet {
-
-	@Id
-	@Column (name="timesheetid")
-	private String timesheetId ;
-	
-	@Column (name="workername")
-	private String workerName;
-	
-	@Column (name="timestampend")
-	private Date timesheetEndDate; 
-	
+	@Column(name="timesheetid")
+	private String timesheetid ;
+	private String workername;
+	private Date timestampend;
+	private String status;
 	private String location;
-	
-	private String status ;
-	
-	@Column (name= "sthours")
-	private Double stHours ;
-	
-	@Column (name= "othours")
-	private Double otHours ;
-	
-	@Column (name= "strate")
-	private Double stRate ;
-	
-	@Column (name= "otrate")
-	private Double otRate ;
-	
-	private Boolean invoiced;
-	
-	public String getTimesheetId() {
-		return timesheetId;
+	private double sthours;
+	private double othours;
+	private double strate;
+	private double otrate;
+	private boolean invoiced;
+	public String getTimesheetid() {
+		return timesheetid;
 	}
-
-	public void setTimesheetId(String timesheetId) {
-		this.timesheetId = timesheetId;
+	public void setTimesheetid(String timesheetid) {
+		this.timesheetid = timesheetid;
 	}
-
-	public String getWorkerName() {
-		return workerName;
+	public String getWorkername() {
+		return workername;
 	}
-
-	public void setWorkerName(String workerName) {
-		this.workerName = workerName;
+	public void setWorkername(String workername) {
+		this.workername = workername;
 	}
-
-	public Date getTimesheetEndDate() {
-		return timesheetEndDate;
-	}
-
-	public void setTimesheetEndDate(Date timesheetEndDate) {
-		this.timesheetEndDate = timesheetEndDate;
-	}
-
-	public String getLocation() {
-		return location;
-	}
-
-	public void setLocation(String location) {
-		this.location = location;
-	}
-
 	public String getStatus() {
 		return status;
 	}
-
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
-	public Double getStHours() {
-		return stHours;
+	public String getLocation() {
+		return location;
 	}
-
-	public void setStHours(Double stHours) {
-		this.stHours = stHours;
+	public void setLocation(String location) {
+		this.location = location;
 	}
-
-	public Double getOtHours() {
-		return otHours;
+	public double getSthours() {
+		return sthours;
 	}
-
-	public void setOtHours(Double otHours) {
-		this.otHours = otHours;
+	public void setSthours(double sthours) {
+		this.sthours = sthours;
 	}
-
-	public Double getStRate() {
-		return stRate;
+	public double getOthours() {
+		return othours;
 	}
-
-	public void setStRate(Double stRate) {
-		this.stRate = stRate;
+	public void setOthours(double othours) {
+		this.othours = othours;
 	}
-
-	public Double getOtRate() {
-		return otRate;
+	public double getStrate() {
+		return strate;
 	}
-
-	public void setOtRate(Double otRate) {
-		this.otRate = otRate;
+	public void setStrate(double strate) {
+		this.strate = strate;
 	}
-
-	public Boolean getInvoiced() {
+	public double getOtrate() {
+		return otrate;
+	}
+	public void setOtrate(double otrate) {
+		this.otrate = otrate;
+	}
+	public boolean isInvoiced() {
 		return invoiced;
 	}
-
-	public void setInvoiced(Boolean invoiced) {
+	public void setInvoiced(boolean invoiced) {
 		this.invoiced = invoiced;
+	}
+
+	public Date getTimestampend() {
+		return timestampend;
+	}
+	public void setTimestampend(Date timestampend) {
+		this.timestampend = timestampend;
 	}
 }

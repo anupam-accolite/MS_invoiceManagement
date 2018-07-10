@@ -10,99 +10,70 @@ import javax.persistence.Id;
 public class Worker {
 
 	@Id
-	@Column (name = "eid")
-	private String workerId;
-	
-	@Column (name = "sdate")
-	private Date startDate;
-	
-	@Column (name = "edate")
-	private Date endDate;
-	
+	@Column(name="eid")
+	private String eid ;
+	private Date sdate;
+	private Date edate;
 	private String status;
-	
-	private Double rate = 1.0;
-	
+	private double rate = 1.0;
 	private String location;
+	private long experience = 0;
+	private long fg;
+	private Date ason;
 	
-	private Integer experience=0;
 	
-	@Column (name = "fg")
-	private Integer fgLevel;
-	
-	@Column(name = "ason")
-	private Date asOn = null;
-	
-	public String getWorkerId() {
-		return workerId;
+	public String getEid() {
+		return eid;
 	}
-
-	public void setWorkerId(String workerId) {
-		this.workerId = workerId;
+	public void setEid(String eid) {
+		this.eid = eid;
 	}
-
-	public Date getStartDate() {
-		return startDate;
+	public Date getSdate() {
+		return sdate;
 	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setSdate(Date sdate) {
+		this.sdate = sdate;
 	}
-
-	public Date getEndDate() {
-		return endDate;
+	public Date getEdate() {
+		return edate;
 	}
-
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+	public void setEdate(Date edate) {
+		this.edate = edate;
 	}
-
 	public String getStatus() {
 		return status;
 	}
-
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
-	public Double getRate() {
+	public double getRate() {
 		return rate;
 	}
-
-	public void setRate(Double rate) {
+	public void setRate(double rate) {
 		this.rate = rate;
 	}
-
 	public String getLocation() {
 		return location;
 	}
-
 	public void setLocation(String location) {
 		this.location = location;
 	}
-
-	public Integer getExperience() {
+	public long getExperience() {
 		return experience;
 	}
-
-	public void setExperience(Integer experience) {
+	public void setExperience(long experience) {
 		this.experience = experience;
 	}
-
-	public Integer getFgLevel() {
-		return fgLevel;
+	public long getFg() {
+		return fg;
 	}
-
-	public void setFgLevel(Integer fgLevel) {
-		this.fgLevel = fgLevel;
+	public void setFg(long fg) {
+		this.fg = fg;
 	}
-
-	public Date getAsOn() {
-		return asOn;
+	public Date getAson() {
+		return ason;
 	}
-
-	public void setAsOn(Date asOn) {
-		this.asOn = asOn;
+	public void setAson(Date ason) {
+		this.ason = ason;
 	}
-
 }

@@ -1,3 +1,4 @@
+
 CREATE TABLE IF NOT EXISTS Login
 (
    userId character varying primary key, 

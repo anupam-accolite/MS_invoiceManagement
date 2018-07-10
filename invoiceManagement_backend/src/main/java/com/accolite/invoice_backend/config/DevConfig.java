@@ -15,7 +15,7 @@ public class DevConfig {
     @Profile("dev-postgres")
     public DataSource dataSource() {
         return DataSourceBuilder.create().driverClassName(org.postgresql.Driver.class.getName()).username("postgres")
-                .password("root").url("jdbc:postgresql://localhost/project").build();
+        .password("root").url("jdbc:postgresql://localhost/invoice").build();
     }
 
     @Bean
