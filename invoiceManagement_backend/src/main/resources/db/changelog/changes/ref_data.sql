@@ -41,3 +41,5 @@ insert into Timesheet values('J','anushree','2018-03-11','blr','pending',40.0,0.
 insert into Timesheet values('K','anushree','2018-07-11','blr','invoiced',40.0,0.0,1.0,1.0,FALSE);
 insert into Timesheet values('L','anushree','2018-07-31','mum','invoiced',40.0,0.0,1.0,1.0,FALSE);
 insert into Timesheet values('M','anushree','2018-07-31','mum','invoiced',40.0,0.0,1.0,1.0,TRUE);
+insert into Timesheet values('N','ankit','2018-07-31','mum','draft',40.0,0.0,1.0,1.0,FALSE);
+insert into Timesheet values('O','rishab','2018-07-31','blr','draft',40.0,0.0,1.0,1.0,FALSE);
