@@ -3,10 +3,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.accolite.invoice_backend.dto.DraftDto;
 import com.accolite.invoice_backend.dto.InvoiceDto;
 import com.accolite.invoice_backend.entity.Timesheet;
 
@@ -17,6 +19,7 @@ public class TimesheetService {
 	
 	InvoiceDto timesheetDtoB=new InvoiceDto();
 	InvoiceDto timesheetDtoM=new InvoiceDto();
+	DraftDto draftDto = new DraftDto();
 	
 	@Autowired
 	TimesheetRepository timesheetRepository;
@@ -77,5 +80,31 @@ public class TimesheetService {
 		l.add(timesheetDtoB);
 		l.add(timesheetDtoM);
 		return l;		
+	}
+	
+	
+	public List<DraftDto> getDraft() {
+		
+		List<DraftDto> l2 = new ArrayList<DraftDto>();
+		Iterable<Timesheet> r2=	timesheetRepository.findAll();
+		Iterator<Timesheet> rs2= r2.iterator();
+		Date curDate = new Date();
+		
+		while(rs2.hasNext()) {
+			Timesheet timesheet= rs2.next();
+			String status=timesheet.getStatus();
+			Date tEnd = timesheet.getTimestampend();
+			if(status.equalsIgnoreCase("draft"))
+			{
+				draftDto.setLocation(timesheet.getLocation());
+				draftDto.setTimesheetid(timesheet.getTimesheetid());
+				draftDto.setWorkername(timesheet.getWorkername());
+				
+				l2.add(draftDto);
+				
+			}
+			
+		}
+		return l2;
 	}
 }
