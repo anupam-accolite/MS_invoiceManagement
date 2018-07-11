@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.accolite.invoice_backend.dto.DraftDto;
+import com.accolite.invoice_backend.entity.InvoiceMapping;
 import com.accolite.invoice_backend.entity.Timesheet;
 import com.accolite.invoice_backend.repository.CalendarRepository;
+import com.accolite.invoice_backend.repository.InvoiceMappingRepository;
 import com.accolite.invoice_backend.repository.TimesheetRepository;
 
 @Service
@@ -21,6 +23,10 @@ public class TimesheetService {
 	TimesheetRepository timesheetRepository;
 	@Autowired
 	CalendarRepository calendarRepository;
+	@Autowired
+	InvoiceMappingRepository invoiceMappingRepository;
+
+	InvoiceMapping row;
 
 	public HashMap<String, Double> getInvoice(boolean inMonth) {
 		// List<InvoiceDto> l=new ArrayList<InvoiceDto>();
@@ -37,7 +43,7 @@ public class TimesheetService {
 			Timesheet timesheet = rs.next();
 			String status = timesheet.getStatus();
 			boolean invoiced = timesheet.isInvoiced();
-			if (status.compareTo("invoiced") == 0 && invoiced == false) {
+			if (status.equalsIgnoreCase("Invoiced") && invoiced == false) {
 
 				Date tEnd = timesheet.getTimestampend();
 				// System.out.println(rs.getString("location"));
@@ -47,7 +53,15 @@ public class TimesheetService {
 							map.put(timesheet.getLocation(), 0.0);
 						map.put(timesheet.getLocation(),
 								map.get(timesheet.getLocation()) + timesheet.getSthours() * timesheet.getStrate()
-										+ timesheet.getOthours() * timesheet.getOtrate());
+								+ timesheet.getOthours() * timesheet.getOtrate());
+						// update this object row in timesheet table
+						timesheet.setInvoiced(true);
+						timesheetRepository.save(timesheet);
+						// send this object to invoiceMapping table after changing the status to true
+						row = new InvoiceMapping();
+						row.setPaid(false);
+						row.setTimesheetId(timesheet.getTimesheetid());
+						invoiceMappingRepository.save(row);
 
 					}
 				} else {
@@ -57,15 +71,23 @@ public class TimesheetService {
 							map.put(timesheet.getLocation(), 0.0);
 						map.put(timesheet.getLocation(),
 								map.get(timesheet.getLocation()) + timesheet.getSthours() * timesheet.getStrate()
-										+ timesheet.getOthours() * timesheet.getOtrate());
+								+ timesheet.getOthours() * timesheet.getOtrate());
+						// update this object row in timesheet table
+						timesheet.setInvoiced(true);
+						timesheetRepository.save(timesheet);
+						// send this object to invoiceMapping table after changing the status to true
+						row = new InvoiceMapping();
+						row.setPaid(false);
+						row.setTimesheetId(timesheet.getTimesheetid());
+						invoiceMappingRepository.save(row);
 					}
 				}
+
 			}
 		}
 
 		return map;
 	}
-
 	public HashMap<String, List<DraftDto>> getDraft() {
 
 		HashMap<String, List<DraftDto>> h = new HashMap<String, List<DraftDto>>();
@@ -78,7 +100,7 @@ public class TimesheetService {
 			Timesheet timesheet = rs2.next();
 			String status = timesheet.getStatus();
 
-			if (status.equalsIgnoreCase("draft")) {
+			if (status.equalsIgnoreCase("Draft")) {
 				if (!h.containsKey(timesheet.getLocation())) {
 
 					h.put(timesheet.getLocation(), new ArrayList());

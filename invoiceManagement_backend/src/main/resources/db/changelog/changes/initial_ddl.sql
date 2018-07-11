@@ -53,7 +53,6 @@ create table if not exists tfr (
 
 
 create table IF NOT EXISTS invoice_mapping(
- invoice_id SERIAL primary key,
  timesheet_id character varying(40),
  paid boolean default false,
  foreign key(timesheet_id) references timesheet(timesheetid)
