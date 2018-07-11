@@ -39,7 +39,7 @@ public class FileService {
 	WorkerRepository workerRepository;
 
 	public void saveTimesheet(String timesheetFile) {
-		int count = 1;
+		int count = 0;
 
 		File myFile = new File(timesheetFile);
 		FileInputStream fis = null;
@@ -63,18 +63,17 @@ public class FileService {
 			count++;
 			if(count>=3) {
 				Timesheet timesheet = new Timesheet();
-				Cell cell = row.getCell(1);
+				Cell cell = row.getCell(0);
 
 				if(cell!=null) {
 
 					String timesheetId = row.getCell(0).getStringCellValue();
 					timesheet.setTimesheetid(timesheetId.toString());
-
+					
 					String workerName = row.getCell(2).getStringCellValue();
 					timesheet.setWorkername(workerName);
 
 					Date date = row.getCell(3).getDateCellValue();
-					System.out.println(date);
 					timesheet.setTimestampend(date);
 
 					String location = row.getCell(6).getStringCellValue();
@@ -115,13 +114,12 @@ public class FileService {
 						}
 					}
 					else if(timesheet.getStatus().equals("Paid")) {
-						System.out.println(timesheet.getStatus());
 						InvoiceMapping invoiceMapping = invoiceMappingRepository.findOne(timesheet.getTimesheetid());
-						if(existInInvoiceMap && invoiceMapping !=null && !invoiceMapping.getPaid()) {
+						if(existInInvoiceMap && invoiceMapping !=null) {
 							invoiceMapping.setPaid(true);
 							invoiceMappingRepository.save(invoiceMapping);
 						}
-						else if(existInTimesheet) {
+						else if(existInTimesheet ) {
 							timesheetRepository.delete(timesheet.getTimesheetid());
 						}
 					}
@@ -135,7 +133,7 @@ public class FileService {
 
 	public void saveTFR(String tfrFile) {
 		System.out.println("in save tfr" + tfrFile);
-		int count = 1;
+		int count = 0;
 		File myFile = new File(tfrFile);
 		FileInputStream fis = null;
 		try {
@@ -155,7 +153,7 @@ public class FileService {
 		while (rowIterator.hasNext()) {
 			Row row = rowIterator.next(); // For each row, iterate through each columns 
 			count++;
-			if(count>=3) {
+			if(count>=4) {
 				TFR tfr = new TFR();
 				Cell cell = row.getCell(2);
 				if(cell!=null) {
@@ -190,7 +188,6 @@ public class FileService {
 		Iterator<Row> rowIterator = mySheet.iterator(); // Traversing over each row of XLSX file 
 
 		while (rowIterator.hasNext()) {
-			System.out.println("in whileeeeeeeeee");
 			Row row = rowIterator.next(); // For each row, iterate through each columns 
 			count++;
 			if(count>=3) {
