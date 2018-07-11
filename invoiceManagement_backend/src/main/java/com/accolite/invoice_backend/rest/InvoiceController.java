@@ -1,26 +1,28 @@
 package com.accolite.invoice_backend.rest;
+import java.util.HashMap;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.accolite.invoice_backend.entity.Login;
-import com.accolite.invoice_backend.service.LoginService;
+import com.accolite.invoice_backend.dto.MonthDtoInvoice;
+import com.accolite.invoice_backend.service.TimesheetService;
 
 @RestController
-@RequestMapping(value = "login")
-public class LoginController {
+@RequestMapping(value = "invoice")
+public class InvoiceController {
 
 
      @Autowired
-     LoginService loginService;
+     TimesheetService timesheetService;
 	
 	@RequestMapping(value="/",method=RequestMethod.POST)
-	public ResponseEntity<Boolean> login(@RequestBody final Login login)
+	public ResponseEntity<HashMap<String, Double>> getInvoice(@RequestBody final MonthDtoInvoice month)
 	{
-		return ResponseEntity.ok().body(loginService.isValidUser(login));
+		return ResponseEntity.ok().body(timesheetService.getInvoice(month.month));
 	}
 }

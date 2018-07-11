@@ -23,8 +23,9 @@ logIn(){
   console.log(this.login);
   this.loginService.login(this.login).subscribe(data=>{
     if(data)
+  {  localStorage.setItem("loggedInUser","true");
     this.router.navigate(['dashboard']);
-  
+  }
   });
  }
 }

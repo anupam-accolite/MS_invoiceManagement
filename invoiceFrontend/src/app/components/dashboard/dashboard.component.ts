@@ -25,6 +25,10 @@ export class DashboardComponent implements OnInit {
    }
 
   ngOnInit() {
+     if( localStorage.getItem("loggedInUser")==null)
+     {
+         this.router.navigate(['login']);
+     }
   }
 Projection()
 {

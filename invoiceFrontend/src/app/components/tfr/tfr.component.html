@@ -1,3 +1,41 @@
-<p>
-  tfr works!
-</p>
+
+<div class="column small-12 large-2">
+    <label class="sbw_light">Filter:</label><br />
+    <select [(ngModel)]="statusFilter" (change)="getList()">
+       <option *ngFor="let filterValue of filterValues"  value="{{filterValue.status}}">{{filterValue.mappedName}}</option>
+       
+    </select>
+</div>
+<table class="table table-striped table-responsive-md btn-table">
+
+  <!--Table head-->
+  <thead>
+      <tr>
+          <th>#</th>
+          <th>Worker ID</th>
+          <th>Status</th>
+         
+      </tr>
+  </thead>
+  <!--Table head-->
+
+  <!--Table body-->
+  <tbody>
+      <tr *ngFor="let entity of entities; index as i">
+          <th scope="row">{{i}}</th>
+         
+          <td>{{entity.workerId}}</td>
+          <td>
+            <button type="button" [ngClass]="{'btn-success':entity.status === 1}"class="btn btn-default btn-rounded btn-sm my-0" (click)="entity.status=1">Billable</button>
+            <button type="button" [ngClass]="{'btn-success':entity.status === 2}"class="btn btn-default btn-rounded btn-sm my-0" (click)="entity.status=2">non-billable</button>
+            <button type="button" [ngClass]="{'btn-success':entity.status === 0}"class="btn btn-default btn-rounded btn-sm my-0" (click)="entity.status=0">none</button>
+          
+          </td>
+      </tr>
+      
+  </tbody>
+  
+  <button type="button" class="btn btn-success" (click)="onClick()">Save</button>
+  <!--Table body-->
+
+</table>

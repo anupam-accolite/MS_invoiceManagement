@@ -38,25 +38,13 @@
 </div>
 <footer class="container-fluid text-center">
   <p>Projection Estimate for a Month</p>
-  <form class="form-inline">Select Month:
-    <span class="dropup" id="head1">
-      <select id='gMonth1'>
-        <option value=''>--Select Month--</option>
-        <option selected value='1'>Janaury</option>
-        <option value='2'>February</option>
-        <option value='3'>March</option>
-        <option value='4'>April</option>
-        <option value='5'>May</option>
-        <option value='6'>June</option>
-        <option value='7'>July</option>
-        <option value='8'>August</option>
-        <option value='9'>September</option>
-        <option value='10'>October</option>
-        <option value='11'>November</option>
-        <option value='12'>December</option>
-      </select>
-    </span>
-    <button type="button" class="btn btn-danger">Get Projection</button>
+  <form class="form-inline"><div class="leftp">Select Month:</div>
+    <div>
+      <mat-select [(value)]="selected" class="select">
+        <mat-option *ngFor="let month of months" [disabled]="month.bool" [value]="month.value">{{month.month}}</mat-option>
+      </mat-select>
+    </div>
+    <button type="button" class="btn btn-danger"(click)="Projection()">Get Projection</button>
   </form>
 </footer>
 
@@ -67,7 +55,7 @@
       <div class="panel panel-primary">
         <div class="panel-heading">Projection for Banagalore</div>
         <div class="panel-body">
-          <span id="blrProjection">X</span>
+          <span>{{projectionData.bangalore}} INR</span>
         </div>
       </div>
     </div>
@@ -77,7 +65,7 @@
       <div class="panel panel-success">
         <div class="panel-heading">Projection for Mumbai</div>
         <div class="panel-body">
-          <span id="mumProjection">Y</span>
+          <span>{{projectionData.mumbai}} INR</span>
         </div>
       </div>
     </div>

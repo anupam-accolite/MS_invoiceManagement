@@ -12,14 +12,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
-import {MatDividerModule} from '@angular/material/divider'
+import {MatDividerModule} from '@angular/material/divider';
+import {MatSelectModule} from '@angular/material/select';
 
 //Components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RouterModule, Routes } from '@angular/router';
-import { HeaderComponent } from './components/header/header.component';
-import { HomeComponent } from './components/home/home.component';
 import { UtilisationComponent } from './components/utilisation/utilisation.component';
 import { ProjectionComponent } from './components/projection/projection.component';
 import { InvoicesComponent } from './components/invoices/invoices.component';
@@ -31,8 +30,7 @@ import { DiscrepanciesComponent } from './components/discrepancies/discrepancies
 import {LoginService} from './services/login.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { TopbarComponent } from './components/topbar/topbar.component';
-
+import {CommonServiceService} from './services/common-service.service';
 const appRoutes: Routes = [
   {
     path: '',
@@ -40,7 +38,6 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
 {path:'login',component:LoginComponent},
-{path:'home',component:HomeComponent},
 {path:'dashboard',component:DashboardComponent},
 {path:'projection',component:ProjectionComponent},
 {path:'invoice',component:InvoicesComponent},
@@ -55,8 +52,6 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    HeaderComponent,
-    HomeComponent,
     UtilisationComponent,
     ProjectionComponent,
     InvoicesComponent,
@@ -65,8 +60,7 @@ const appRoutes: Routes = [
     ExperienceComponent,
     DiscrepanciesComponent,
     DashboardComponent,
-    SidebarComponent,
-    TopbarComponent
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -81,11 +75,12 @@ const appRoutes: Routes = [
      MatCardModule,
      MatGridListModule,
      MatDividerModule,
+     MatSelectModule,
      NgbModule.forRoot(), 
      NgbCarouselModule.forRoot(), NgbAlertModule.forRoot()
      
   ],
-  providers: [LoginService],
+  providers: [LoginService,CommonServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
