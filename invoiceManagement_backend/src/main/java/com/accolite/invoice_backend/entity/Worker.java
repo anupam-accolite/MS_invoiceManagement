@@ -1,5 +1,6 @@
 package com.accolite.invoice_backend.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -17,10 +18,9 @@ public class Worker {
 	private String status;
 	private double rate = 1.0;
 	private String location;
-	private long experience = 0;
+	private long experience = 2;
 	private long fg;
 	private Date ason;
-	
 	
 	public String getEid() {
 		return eid;

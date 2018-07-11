@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 
@@ -13,6 +15,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.tags.form.FormTag;
 
 import com.accolite.invoice_backend.entity.InvoiceMapping;
 import com.accolite.invoice_backend.entity.TFR;
@@ -169,7 +172,7 @@ public class FileService {
 		}
 	}
 
-	public void saveTAndM(String tamFile) {
+	public void saveTAndM(String tamFile) throws ParseException {
 		int count = 0;
 		File myFile = new File(tamFile);
 		FileInputStream fis = null;
@@ -217,6 +220,10 @@ public class FileService {
 					//				System.out.println(endDate);
 					worker.setEdate(endDate);
 
+					SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+					Date asOn = fmt.parse("2017-09-09");
+					worker.setAson(asOn);
+					
 					String[] levels = row.getCell(13).getStringCellValue().split(" ");
 					Integer level = Integer.parseInt(levels[1]);
 					//				System.out.println("Level "+level);
