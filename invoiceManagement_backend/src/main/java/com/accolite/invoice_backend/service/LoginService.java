@@ -13,7 +13,16 @@ public class LoginService {
 	
 	public boolean isValidUser(Login login)
 	{
+		int flag=-1;
 		boolean exist=loginRepository.exists(login.getUserId());
-		return exist;
+		if(exist){
+			String repoPassword= loginRepository.findOne(login.getUserId()).getPassword().toString();
+			if(repoPassword.compareTo(login.getPassword())==0)
+				flag=1;
+		}
+		if(flag==1)
+			return true;
+		else
+			return false;
 	}
 }

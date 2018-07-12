@@ -1,4 +1,4 @@
-INSERT INTO Login(userId,password) VALUES ('anupam','password');
+INSERT INTO Login(userId,password) VALUES ('admin','password');
 
 insert into fglevel values(1,0,24);
 insert into fglevel values(2,25,48);
