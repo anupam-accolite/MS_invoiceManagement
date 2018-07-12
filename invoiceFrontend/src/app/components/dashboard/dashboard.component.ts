@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
-import { NgbCarouselModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+//import { NgbCarouselModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TfrComponent } from '../tfr/tfr.component';
 @Component({
@@ -48,7 +48,7 @@ Discrepancies()
 
 Pending()
 {
-    this.router.navigate(['followup']);
+    this.router.navigate(['followUp']);
 }
 Utilization()
 {

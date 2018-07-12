@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgbCarouselModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+//import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+//import { NgbCarouselModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 //Materials
 
 import {MatInputModule} from '@angular/material/input';
@@ -43,7 +43,7 @@ const appRoutes: Routes = [
 {path:'invoice',component:InvoicesComponent},
 {path:'discrepancies',component:DiscrepanciesComponent},
 {path:'experience',component:ExperienceComponent},
-{path:'followup',component:IncompleteTimesheetsComponent},
+{path:'followUp',component:IncompleteTimesheetsComponent},
 {path:'tfr',component:TfrComponent},
 {path:'utilisation',component:UtilisationComponent}
 
@@ -76,8 +76,8 @@ const appRoutes: Routes = [
      MatGridListModule,
      MatDividerModule,
      MatSelectModule,
-     NgbModule.forRoot(), 
-     NgbCarouselModule.forRoot(), NgbAlertModule.forRoot()
+     //NgbModule.forRoot(), 
+     //NgbCarouselModule.forRoot(), NgbAlertModule.forRoot()
      
   ],
   providers: [LoginService,CommonServiceService],
