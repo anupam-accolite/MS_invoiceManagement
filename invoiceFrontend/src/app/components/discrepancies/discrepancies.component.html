@@ -1,3 +1,32 @@
-<p>
-  discrepancies works!
-</p>
+<table class="table table-sm table-striped table-responsive-md btn-table table-hover">
+
+    <!--Table head-->
+    <thead class="table-active ">
+        <tr>
+            <th>#</th>
+            <th>Worker ID</th>
+            <th>Status</th>
+           
+        </tr>
+    </thead>
+    <!--Table head-->
+  
+    <!--Table body-->
+    <tbody>
+        <tr *ngFor="let entity of entities; index as i">
+            <th scope="row">{{i}}</th>
+           
+            <td>{{entity.eid}}</td>
+            <td>
+              {{entity.discrepancyType
+              }}
+            
+            </td>
+        </tr>
+        
+    </tbody>
+    
+    
+    <!--Table body-->
+  
+  </table>

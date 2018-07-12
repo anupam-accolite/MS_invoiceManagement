@@ -1,3 +1,99 @@
-<p>
-  utilisation works!
-</p>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <ul class="nav navbar-nav">
+        <li class="active">
+          <a href="#">Back</a>
+        </li>
+      </ul>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="#">
+            <span class="glyphicon glyphicon-user"></span> Your Account</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>Utilisation</h1>
+  </div>
+</div>
+<footer class="container-fluid text-center">
+  <p>Utilisation per month</p>
+  <form class="form-inline"><div class="leftp">Select Month and Year:
+  
+      <mat-select [(value)]="selectedMonth" class="select">
+        <mat-option *ngFor="let month of months"  [value]="month.value">{{month.month}}</mat-option>
+      </mat-select>
+
+          <mat-select [(value)]="selectedYear" class="select">
+        <mat-option *ngFor="let year of years" [value]="year">{{year}}</mat-option>
+      </mat-select>
+    </div>
+    <button type="button" class="btn btn-danger"(click)="Utilization()">Get Utilisation</button>
+  </form>
+</footer>
+
+
+
+<br>
+
+<table class="table table-striped table-responsive-md btn-table table-sm">
+
+  <!--Table head-->
+  <thead>
+      <tr>
+          <th>#</th>
+          <th>Location</th>
+          <th>Generated Invoice</th>
+         
+      </tr>
+  </thead>
+  <!--Table head-->
+
+  <!--Table body-->
+  <tbody>
+      <tr *ngFor="let  l of locationArray; index as i" >
+          <th scope="row">{{i}}</th>
+         
+          <td>{{l}}</td>
+          <td>
+            
+            {{actualArray[i]}}
+          </td>
+          <td>
+            
+            {{availableArray[i]}}
+          </td>
+          <td>
+            
+            {{utilisationArray[i]}}
+          </td>
+      </tr>
+      
+  </tbody>
+  
+  
+  <!--Table body-->
+
+</table>
+<br>
+<br>

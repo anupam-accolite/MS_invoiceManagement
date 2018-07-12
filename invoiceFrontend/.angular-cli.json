@@ -19,9 +19,31 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "assets/web/assets/mobirise-icons/mobirise-icons.css",
+        "assets/tether/tether.min.css",
+        "assets/bootstrap/css/bootstrap.min.css",
+        "assets/bootstrap/css/bootstrap-grid.min.css",
+        "assets/bootstrap/css/bootstrap-reboot.min.css",
+        "assets/socicon/css/styles.css",
+        "assets/dropdown/css/style.css",
+        "assets/theme/css/style.css",
+        "assets/mobirise/css/mbr-additional.css"
+       
       ],
-      "scripts": [],
+      "scripts": [
+        "assets/web/assets/jquery/jquery.min.js",
+        "assets/popper/popper.min.js",
+        "assets/tether/tether.min.js",
+        "assets/bootstrap/js/bootstrap.min.js",
+        "assets/dropdown/js/script.min.js",
+        "assets/touchswipe/jquery.touch-swipe.min.js",
+        "assets/parallax/jarallax.min.js",
+        "assets/smoothscroll/smooth-scroll.js",
+        "assets/theme/js/script.js",
+        "assets/popper/jquery-3.3.1.min.js"
+      
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
