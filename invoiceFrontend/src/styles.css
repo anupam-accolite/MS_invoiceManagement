@@ -1,9 +1,72 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@media screen and (max-width: 992px) {
-    .push-right {
-        .sidebar {
-            left: 235px !important;
-        }
-    }
+
+body {
+	height: 100vh !important;
 }
+
+.wrapper {
+	height: 100% !important;
+}
+
+mat-icon {
+	font-family: 'Material Icons' !important;
+}
+
+.mat-grid-tile .mat-figure {
+	display: block !important;
+}
+
+.mat-chip-list-wrapper {
+	flex-wrap: nowrap !important;
+	overflow-x: auto;
+}
+
+::-webkit-scrollbar-track, -moz-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+	border-radius: 3px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar, -moz-scrollbar {
+	height: 5px !important;
+	width: 7px !important;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb, -moz-scrollbar-thumb {
+	border-radius: 3px;
+	-webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, .3);
+	background-color: #555;
+}
+
+.new-line {
+	white-space: pre-line;
+}
+
+a {
+	cursor: pointer !important;
+}
+.hide-it {
+	display: none;
+  }
+
+  .spinner{
+	  left:50% !important;
+	  right:50% !important;
+	  position: absolute;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
